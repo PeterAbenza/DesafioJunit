@@ -1,4 +1,4 @@
-# Projeto de Estudo com JUnit
+# Projetos de Estudo com JUnit
 
 Esses projetos tem como objetivo praticar testes unitários com JUnit, buscando manter uma **cobertura de testes acima de 80%**.
 
