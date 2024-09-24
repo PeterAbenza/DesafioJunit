@@ -1,5 +1,7 @@
 package br.com.Junit.modelo;
 
+import java.util.stream.Collectors;
+
 import java.text.NumberFormat;
 import java.util.Comparator;
 import java.util.List;
@@ -35,7 +37,16 @@ public class GestorDeFuncionarios {
 	                .max(Comparator.comparing(Funcionario::getSalario))
 	                .orElse(null); // Retorna null se não houver funcionários
 	 }
-	
+	 
+	 public List<Funcionario> funcionariosPorIdade() {
+		  List<Funcionario> funcionariosIdades = funcionarios.stream()
+                 .sorted(Comparator.comparing(Funcionario::getIdade)) // Ordenação natural (crescente) || Ordenando por idade
+                 .collect(Collectors.toList());
+		  
+		  System.out.println(funcionariosIdades);
+		 
+		  return funcionariosIdades;
+	 }
 
 	public double mediaSalariosFuncionarios() {
 		double mediaSalarios = funcionarios.stream()

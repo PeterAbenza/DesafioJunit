@@ -22,5 +22,7 @@ public class index {
 		gestorDeFuncionarios.DepartamentoFuncionarios("TI");
 		gestorDeFuncionarios.funcionarioMaiorSalario();
 		gestorDeFuncionarios.mediaSalariosFuncionarios();
+		
+		/* gestorDeFuncionarios.funcionariosPorIdade(); */
 	}
 }

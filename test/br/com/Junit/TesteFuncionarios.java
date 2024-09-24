@@ -4,8 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,18 +36,28 @@ class TesteFuncionarios {
 
 	@Test
 	void funcionarioMaiorSalario() {
-		Optional<Funcionario> funcionarioComMaiorSalario = Optional.ofNullable(gestorDeFuncionarios.funcionarioMaiorSalario());
-		
+		Optional<Funcionario> funcionarioComMaiorSalario = Optional
+				.ofNullable(gestorDeFuncionarios.funcionarioMaiorSalario());
+
 		assertEquals("João", funcionarioComMaiorSalario.get().getNome());
 		assertTrue(funcionarioComMaiorSalario.isPresent());
-		
+
 	}
 
 	@Test
 	void mediaSalariosFuncionarios() {
 		double mediaEsperada = (3454.43 + 6234.64 + 4144.49) / 3;
-		assertEquals(mediaEsperada, gestorDeFuncionarios.mediaSalariosFuncionarios(), 0.01); // O terceiro argumento é a
-																								// margem de erro
-																								// permitida
+
+		// O terceiro argumento é a margem de erro permitida
+		assertEquals(mediaEsperada, gestorDeFuncionarios.mediaSalariosFuncionarios(), 0.01);
+	}
+	
+	@Test
+	void funcionariosPorIdade() {
+		 List<Funcionario> funcionariosEsperados = funcionarios.stream()
+	                .sorted(Comparator.comparing(Funcionario::getIdade)).toList(); // Ordenando por idadE
+		
+		assertEquals(funcionariosEsperados, gestorDeFuncionarios.funcionariosPorIdade());
+		//assertTrue(gestorDeFuncionarios.funcionariosPorIdade().get(0).getIdade() < gestorDeFuncionarios.funcionariosPorIdade().get(1).getIdade());
 	}
 }
